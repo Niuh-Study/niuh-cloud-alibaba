@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        file-extension: yml
+        #各个微服务共享的配置,注意越拍到后面的公共配置yml优先级越高
+        shared-dataids: common.yml,common2.yml
+        #支持动态刷新的配置文件
+        refreshable-dataids: common.yml,common2.yml
+        ext-config:
+          - data-id: common3.yml
+            group: DEFAULT_GROUP
+            refresh: true
+          - data-id: common4.yml
+            group: DEFAULT_GROUP
+            refresh: true
+  application:
+    name: config-app
+  profiles:
+    active: dev
